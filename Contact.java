@@ -56,4 +56,48 @@ public class Contact {
             }
         }
     }
+    public void update() {
+        System.out.println("Enter First And Last Name to Update details ");
+        String first_name = sc.next();
+        String last_name = sc.next();
+
+        for (int i = 0; i < userData.size(); i++) {
+            UserData data = userData.get(i);
+
+            if (first_name.equals(data.firstName) && last_name.equals(data.lastName)) {
+                System.out.println("Enter Choice to Update\nEnter 1 for Update Address\n Enter 2 for contact Number \n " + "Enter 3 for Email adderss ");
+                int choice =  sc.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter Address: ");
+                        String newAddress = sc.next();
+
+                        System.out.print("Enter City Name: ");
+                        String newCity = sc.next();
+
+                        System.out.print("Enter State: ");
+                        String newState = sc.next();
+
+                        System.out.print("Enter postal code(Zip Code): ");
+                        int zip = sc.nextInt();
+                        break;
+
+                    case 2:
+                        System.out.print("Enter Contact Number: ");
+                        long newNumber = sc.nextLong();
+                        break;
+
+                    case 3:
+                        System.out.print("Enter Email ID: ");
+                        String newEmail = sc.next();
+                        break;
+
+
+                }
+            }
+            else
+                System.out.println("No record Found ");
+        }
+    }
 }
