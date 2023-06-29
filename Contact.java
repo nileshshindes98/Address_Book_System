@@ -99,5 +99,25 @@ public class Contact {
             else
                 System.out.println("No record Found ");
         }
+        System.out.println();
     }
-}
+
+    //create method for delete contact
+    public void deleteContact() {
+        if (userData.size() == 0) {
+            System.out.println("No Record Found...Empty Address Book");
+        }
+
+        else {
+            System.out.print("ENter First Name to delete Contact from addressBook: ");
+            String first_name =  sc.next();
+            for (int i = 0; i < userData.size(); i++) {
+                UserData data = userData.get(i);
+                if (first_name.equals(data.firstName)) {
+                    userData.remove(i);
+                    System.out.println("Contact Delete SuccessFully...");
+                }
+            }
+        }
+      }
+    }
