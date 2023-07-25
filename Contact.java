@@ -118,6 +118,6 @@ public class Contact {
                     System.out.println("Contact Delete SuccessFully...");
                 }
             }
-        }
-      }
+         }
+       }
     }
