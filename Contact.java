@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Contact {
     HashMap<String, ArrayList<UserData>> hashMap = new HashMap<>();
@@ -220,4 +221,22 @@ public class Contact {
         }
         System.out.println();
     }
+    //---------------------------------------------------------------------------------//
+
+    //UC8 = Ability to search Person in a City or State across the multiple AddressBook
+    //UC9 = Ability to view Persons by City or State
+    //Using Java Streams
+
+    private void searchPersonByCityOrState(ArrayList<UserData> userData) {
+        int count = 0;
+        System.out.print("Enter The City Name: ");
+        String city = sc.next();
+
+        System.out.print("Enter The State Name: ");
+        String state = sc.next();
+
+        userData.stream().filter(data -> data.getCityName().equalsIgnoreCase(city) && data.getStateName().equalsIgnoreCase(state))
+                .collect(Collectors.toList())
+                .forEach(data -> System.out.println("\n...Contacts Found...\n" +data));
+        }
     }
