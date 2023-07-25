@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class Contact {
                 contact.menuOption(contact, userData);
                 hashMap.put(addressBookName, userData);
             }
-            System.out.println("AddressBook Added... \n" +hashMap+ " " + "\n");
+            System.out.println("AddressBook Added... \n" + hashMap + " " + "\n");
             System.out.println("If you want to add another address book Press 1");
             System.out.println("For exit press 0 ");
             ans = sc.nextInt();
@@ -50,7 +51,7 @@ public class Contact {
                     2: Update Contact.\s
                     3: Delete Contact.\s
                     4: View Contact.\s
-                    5: Exit.""" );
+                    5: Exit.""");
             System.out.println();
             System.out.print("Enter Your Choice: ");
             choice = sc.nextInt();
@@ -135,7 +136,6 @@ public class Contact {
     }
 
 
-
     //create method for update
 //----------------------------------------------------------------------------//
     public void update(ArrayList<UserData> userData) {
@@ -153,7 +153,7 @@ public class Contact {
                         Enter 3 for Email adderss.""");
 
                 System.out.print("Enter Choice to Update. ");
-                int choice =  sc.nextInt();
+                int choice = sc.nextInt();
 
                 switch (choice) {
                     case 1:
@@ -189,8 +189,7 @@ public class Contact {
 
                 }
                 System.out.println("Updated Successfully...");
-            }
-            else
+            } else
                 System.out.println("No record Found ");
 
         }
@@ -202,11 +201,9 @@ public class Contact {
     public void deleteContact(ArrayList<UserData> userData) {
         if (userData.size() == 0) {
             System.out.println("No Record Found...Empty Address Book");
-        }
-
-        else {
+        } else {
             System.out.print("Enter First Name to delete Contact from Address Book: ");
-            String first_name =  sc.next();
+            String first_name = sc.next();
             for (int i = 0; i < userData.size(); i++) {
                 UserData data = userData.get(i);
                 if (first_name.equals(data.firstName)) {
@@ -236,10 +233,17 @@ public class Contact {
 
         userData.stream().filter(data -> data.getCityName().equalsIgnoreCase(city) && data.getStateName().equalsIgnoreCase(state))
                 .collect(Collectors.toList())
-                .forEach(data -> System.out.println("\n...Contacts Found...\n" +data));
+                .forEach(data -> System.out.println("\n...Contacts Found...\n" + data));
 
         //UC10=Ability to get number of contact persons i.e. count by City or State
         long count = userData.stream().filter(data -> data.getCityName().equalsIgnoreCase(city) && data.getStateName().equalsIgnoreCase(state)).count();
-        System.out.println("\n" +count+ " Persons Found in City " +city+ " and " +state+ ". \n");
-        }
+        System.out.println("\n" + count + " Persons Found in City " + city + " and " + state + ". \n");
     }
+
+    //UC11 = Ability to sort the entries in the address book alphabetically by Person’s name
+    public void sortContactByName(ArrayList<UserData> userData) {
+        userData.stream().sorted(Comparator.comparing(UserData::getFirstName))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+    }
+}
