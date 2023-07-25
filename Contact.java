@@ -228,7 +228,6 @@ public class Contact {
     //Using Java Streams
 
     private void searchPersonByCityOrState(ArrayList<UserData> userData) {
-        int count = 0;
         System.out.print("Enter The City Name: ");
         String city = sc.next();
 
@@ -238,5 +237,9 @@ public class Contact {
         userData.stream().filter(data -> data.getCityName().equalsIgnoreCase(city) && data.getStateName().equalsIgnoreCase(state))
                 .collect(Collectors.toList())
                 .forEach(data -> System.out.println("\n...Contacts Found...\n" +data));
+
+        //UC10=Ability to get number of contact persons i.e. count by City or State
+        long count = userData.stream().filter(data -> data.getCityName().equalsIgnoreCase(city) && data.getStateName().equalsIgnoreCase(state)).count();
+        System.out.println("\n" +count+ " Persons Found in City " +city+ " and " +state+ ". \n");
         }
     }
