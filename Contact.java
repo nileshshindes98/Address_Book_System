@@ -246,4 +246,23 @@ public class Contact {
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
+
+    //UC12 = Ability to sort the entries in the address book by City, State, or Zip - Write functions to sort
+    public void sortContactByCity(ArrayList<UserData> userData) {
+        userData.stream().sorted(Comparator.comparing(UserData::getCityName))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+    }
+
+    public void sortContactByState(ArrayList<UserData> userData) {
+        userData.stream().sorted(Comparator.comparing(UserData::getStateName))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+    }
+
+    public void sortContactByZipCode(ArrayList<UserData> userData) {
+        userData.stream().sorted(Comparator.comparing(UserData::getZipCode))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+    }
 }
