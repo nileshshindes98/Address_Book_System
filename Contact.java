@@ -136,7 +136,7 @@ public class Contact {
 
 
     //create method for update
-
+//----------------------------------------------------------------------------//
     public void update(ArrayList<UserData> userData) {
         System.out.println("Enter First And Last Name to Update details ");
         String first_name = sc.next();
@@ -195,6 +195,7 @@ public class Contact {
         }
         System.out.println();
     }
+    //-------------------------------------------------------------------------------//
 
     //create method for delete contact
     public void deleteContact(ArrayList<UserData> userData) {
