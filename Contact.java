@@ -1,3 +1,5 @@
+import java.io.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -264,5 +266,26 @@ public class Contact {
         userData.stream().sorted(Comparator.comparing(UserData::getZipCode))
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
+    }
+    //Method to save save addressvook data to a file
+    public void saveToFile(String fileName) {
+        try (FileOutputStream fos = new FileOutputStream(fileName);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+             oos.writeObject(hashMap);
+            System.out.println("Data saved to " + fileName + "successfully.");
+        } catch (IOException e) {
+            System.out.println("Error saving data to file : " + e.getMessage());
+        }
+    }
+
+    //Methods to load Addressbook data from a file
+    public void loadFromFile(String fileName){
+        try(FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream ois =new ObjectInputStream(fis)){
+            hashMap =(HashMap<String, ArrayList<UserData>>) ois.readObject();
+            System.out.println("data loaded from "+fileName + "Successfully");
+        }catch (IOException | ClassNotFoundException e){
+            System.out.println("Error loading dta from file."+ e.getMessage());
+        }
     }
 }
