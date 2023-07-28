@@ -1,4 +1,6 @@
-public class UserData {
+import java.io.Serializable;
+
+public class UserData implements Serializable {
 
         //declare user contact details data
         String firstName;
